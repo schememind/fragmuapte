@@ -7,37 +7,6 @@ project(fragmuapte)
 
 set(CMAKE_CXX_STANDARD 20)
 
-if (WIN32)
-    # Windows: include headers
-    if (DEFINED ENV{SDL2_INCLUDE_PATH})
-        include_directories("$ENV{SDL2_INCLUDE_PATH}")
-    else ()
-        message(FATAL_ERROR "Missing environment variable: SDL2_INCLUDE_PATH! Please create this environment variable and set its value as path to a folder containing all SDL2 header files.")
-    endif ()
-
-    # Windows: find libraries
-    if (DEFINED ENV{SDL2_LIB_PATH})
-        find_library(SDL2_MAIN_LIB NAMES SDL2main.lib PATHS ENV SDL2_LIB_PATH)
-        if (NOT SDL2_MAIN_LIB)
-            message(FATAL_ERROR "Library SDL2main not found!")
-        endif ()
-
-        find_library(SDL2_LIB NAMES SDL2.lib PATHS ENV SDL2_LIB_PATH)
-        if (NOT SDL2_LIB)
-            message(FATAL_ERROR "Library SDL2 not found!")
-        endif ()
-
-        find_library(SDL2_IMAGE_LIB NAMES SDL2_image.lib PATHS ENV SDL2_LIB_PATH)
-        if (NOT SDL2_IMAGE_LIB)
-            message(FATAL_ERROR "Library SDL2_image not found!")
-        endif ()
-    else ()
-        message(FATAL_ERROR "Missing environment variable: SDL2_LIB_PATH! Please create this environment variable and set its value as path to a folder containing all SDL2 library files.")
-    endif ()
-else ()
-    # TODO other OS
-endif ()
-
 add_executable(fragmuapte
                src/main.cpp
                src/app/core/MainLoop.cpp
@@ -68,6 +37,41 @@ add_executable(fragmuapte
                src/app/settings/Settings.h
                )
 
+
+if (WIN32)
+    # Windows: include headers
+    if (DEFINED ENV{SDL2_INCLUDE_PATH})
+        include_directories("$ENV{SDL2_INCLUDE_PATH}")
+    else ()
+        message(FATAL_ERROR "Missing environment variable: SDL2_INCLUDE_PATH! Please create this environment variable and set its value as path to a folder containing all SDL2 header files.")
+    endif ()
+
+    # Windows: find libraries
+    if (DEFINED ENV{SDL2_LIB_PATH})
+        find_library(SDL2_MAIN_LIB NAMES SDL2main.lib PATHS ENV SDL2_LIB_PATH)
+        if (NOT SDL2_MAIN_LIB)
+            message(FATAL_ERROR "Library SDL2main not found!")
+        endif ()
+
+        find_library(SDL2_LIB NAMES SDL2.lib PATHS ENV SDL2_LIB_PATH)
+        if (NOT SDL2_LIB)
+            message(FATAL_ERROR "Library SDL2 not found!")
+        endif ()
+
+        find_library(SDL2_IMAGE_LIB NAMES SDL2_image.lib PATHS ENV SDL2_LIB_PATH)
+        if (NOT SDL2_IMAGE_LIB)
+            message(FATAL_ERROR "Library SDL2_image not found!")
+        endif ()
+    else ()
+        message(FATAL_ERROR "Missing environment variable: SDL2_LIB_PATH! Please create this environment variable and set its value as path to a folder containing all SDL2 library files.")
+    endif ()
+
+    target_link_libraries(fragmuapte ${SDL2_MAIN_LIB} ${SDL2_LIB} ${SDL2_IMAGE_LIB})
+else ()
+    # Other OS
+    target_link_libraries(fragmuapte -lSDL2)
+endif ()
+
 # Incrementally copy resources directory to target directory
 add_custom_target(copy_resources_dir ALL
                   COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -76,8 +80,6 @@ add_custom_target(copy_resources_dir ALL
                   COMMENT "Copying resource folder to target folder")
 
 add_dependencies(fragmuapte copy_resources_dir)
-
-target_link_libraries(fragmuapte ${SDL2_MAIN_LIB} ${SDL2_LIB} ${SDL2_IMAGE_LIB})
 
 if(CMAKE_BUILD_TYPE MATCHES DEBUG)
     target_compile_options(fragmuapte PRIVATE -Wall -Wextra -Wpedantic)

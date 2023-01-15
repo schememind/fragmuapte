@@ -2,7 +2,11 @@
 #define FRAGMUAPTE_SDLGPURENDERER_H
 
 
-#include "SDL.h"
+#if defined(_WIN32)
+    #include "SDL.h"
+#else
+    #include "SDL2/SDL.h"
+#endif
 
 namespace zkl {
 

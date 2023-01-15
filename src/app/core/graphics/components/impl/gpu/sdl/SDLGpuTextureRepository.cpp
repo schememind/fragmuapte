@@ -1,5 +1,11 @@
 #include <algorithm>
-#include "SDL_image.h"
+
+#if defined(_WIN32)
+    #include "SDL_image.h"
+#else
+    #include "SDL2/SDL_image.h"
+#endif
+
 #include "SDLGpuTextureRepository.h"
 
 zkl::SDLGpuTextureRepository::SDLGpuTextureRepository(zkl::SDLGpuRenderer const &renderer)

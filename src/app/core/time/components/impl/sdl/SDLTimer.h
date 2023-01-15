@@ -2,7 +2,12 @@
 #define FRAGMUAPTE_SDLTIMER_H
 
 
-#include "SDL.h"
+#if defined(_WIN32)
+    #include "SDL.h"
+#else
+    #include "SDL2/SDL.h"
+#endif
+
 #include "../../Timer.h"
 
 namespace zkl {
