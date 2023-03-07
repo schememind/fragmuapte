@@ -1,19 +1,6 @@
 #include "SDLGpuWindow.h"
 
-zkl::SDLGpuWindow::SDLGpuWindow(zkl::SDLGpuRenderer &renderer) : mRenderer(renderer) {}
-
-void zkl::SDLGpuWindow::clear()
-{
-    SDL_SetRenderDrawColor(mRenderer.renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-    SDL_RenderClear(mRenderer.renderer);
-}
-
-void zkl::SDLGpuWindow::render()
-{
-    SDL_RenderPresent(mRenderer.renderer);
-}
-
-zkl::Window &zkl::SDLGpuWindow::init()
+zkl::SDLGpuWindow::SDLGpuWindow(zkl::SDLGpuRenderer &renderer) : mRenderer(renderer)
 {
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
@@ -59,8 +46,17 @@ zkl::Window &zkl::SDLGpuWindow::init()
         SDL_Quit();
         // TODO throw exception
     }
+}
 
-    return *this;
+void zkl::SDLGpuWindow::clear()
+{
+    SDL_SetRenderDrawColor(mRenderer.renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+    SDL_RenderClear(mRenderer.renderer);
+}
+
+void zkl::SDLGpuWindow::render()
+{
+    SDL_RenderPresent(mRenderer.renderer);
 }
 
 zkl::Window &zkl::SDLGpuWindow::setTitle(std::string const &title)

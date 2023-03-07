@@ -26,7 +26,6 @@ class Window
 public:
     virtual void clear() = 0;
     virtual void render() = 0;
-    virtual Window &init() = 0;
     virtual Window &setTitle(std::string const &title) = 0;
     virtual Window &setSize(int width, int height) = 0;
     virtual Window &setResolution(int width, int height) = 0;

@@ -12,14 +12,17 @@ namespace zkl {
 class MainLoop
 {
 public:
-    MainLoop(std::unique_ptr<zkl::GraphicsLayer> graphicsLayer,
-             std::unique_ptr<zkl::InputHandler> inputHandler,
-             std::unique_ptr<zkl::Timer> timer);
-    [[nodiscard]] bool step() const;    // FIXME return meaningful signal instead of bool
+    MainLoop &setGraphicsLayer(std::unique_ptr<zkl::GraphicsLayer> graphicsLayer);
+    MainLoop &setInputHandler(std::unique_ptr<zkl::InputHandler> inputHandler);
+    MainLoop &setTimer(std::unique_ptr<zkl::Timer> timer);
+    [[nodiscard]] bool isRunning() const;
+    void start();
+    void nextStep();    // FIXME return meaningful signal
 private:
     std::unique_ptr<zkl::GraphicsLayer> mGraphicsLayer;
     std::unique_ptr<zkl::InputHandler> mInputHandler;
     std::unique_ptr<zkl::Timer> mTimer;
+    bool mIsRunning{false};
 };
 
 } // zkl

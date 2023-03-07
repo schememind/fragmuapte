@@ -3,6 +3,7 @@
 
 
 #include "settings/Settings.h"
+#include "core/MainLoop.h"
 
 namespace zkl {
 
@@ -10,10 +11,10 @@ class App
 {
 public:
     zkl::App &loadSettings();
-    void start() const;
+    void start();
 private:
-    zkl::Settings mSettings{};
-    // FIXME move MainLoop as a member variable to here for better readability
+    zkl::Settings mSettings;
+    zkl::MainLoop mMainLoop;
 };
 
 } // zkl

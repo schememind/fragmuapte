@@ -21,13 +21,13 @@ public:
     explicit SDLGpuTextureRepository(zkl::SDLGpuRenderer const &renderer);
     ~SDLGpuTextureRepository() override;
 
-    int addFromFile(std::string const &path) override;
-    void removeById(int textureId) override;
-    void submitToRenderer(int textureId,
-                          int srcX, int srcY, int srcW, int srcH,
-                          int dstX, int dstY, int dstW, int dstH,
-                          int pivotX, int pivotY, float angle,
-                          bool isFlipHorizontal, bool isFlipVertical) override;
+    int addTextureFromFile(std::string const &path) override;
+    void removeTextureById(int textureId) override;
+    void submitTextureToRenderer(int textureId,
+                                 int srcX, int srcY, int srcW, int srcH,
+                                 int dstX, int dstY, int dstW, int dstH,
+                                 int pivotX, int pivotY, float angle,
+                                 bool isFlipHorizontal, bool isFlipVertical) override;
 private:
     static std::size_t const MAX_TEXTURES = 5;
 

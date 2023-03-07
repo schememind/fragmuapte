@@ -19,7 +19,6 @@ public:
     explicit SDLGpuWindow(zkl::SDLGpuRenderer &renderer);
     void clear() override;
     void render() override;
-    Window &init() override;
     Window &setTitle(std::string const &title) override;
     Window &setSize(int width, int height) override;
     Window &setResolution(int width, int height) override;
