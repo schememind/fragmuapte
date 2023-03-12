@@ -69,7 +69,7 @@ if (WIN32)
     target_link_libraries(fragmuapte ${SDL2_MAIN_LIB} ${SDL2_LIB} ${SDL2_IMAGE_LIB})
 else ()
     # Other OS
-    target_link_libraries(fragmuapte -lSDL2)
+    target_link_libraries(fragmuapte -lSDL2 -lSDL2_image)
 endif ()
 
 # Incrementally copy resources directory to target directory
