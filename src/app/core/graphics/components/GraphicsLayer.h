@@ -2,7 +2,6 @@
 #define FRAGMUAPTE_GRAPHICSLAYER_H
 
 
-#include <memory>
 #include "Window.h"
 #include "TextureRepository.h"
 
