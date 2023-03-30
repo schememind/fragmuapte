@@ -6,7 +6,7 @@ SDLTimer::SDLTimer()
 {
     if (int result = SDL_Init(SDL_INIT_TIMER); result < 0)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
         // TODO throw exception
     }
 }

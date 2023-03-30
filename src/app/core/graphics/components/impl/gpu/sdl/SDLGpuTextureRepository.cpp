@@ -31,7 +31,7 @@ int SDLGpuTextureRepository::addTextureFromFile(std::string const &path)
         auto texture = IMG_LoadTexture(mRenderer.renderer, path.c_str());
         if (!texture)
         {
-            SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, SDL_GetError());
+            SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
             // TODO generate default texture
         }
         mTextures.at(id) = texture;

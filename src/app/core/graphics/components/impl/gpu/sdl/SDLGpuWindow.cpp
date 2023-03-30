@@ -7,7 +7,7 @@ SDLGpuWindow::SDLGpuWindow(SDLGpuRenderer &renderer) : mRenderer(renderer)
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
         SDL_Quit();
         // TODO throw exception
     }
@@ -21,7 +21,7 @@ SDLGpuWindow::SDLGpuWindow(SDLGpuRenderer &renderer) : mRenderer(renderer)
     );
     if (!mWindow)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
         SDL_Quit();
         // TODO throw exception
     }
@@ -34,7 +34,7 @@ SDLGpuWindow::SDLGpuWindow(SDLGpuRenderer &renderer) : mRenderer(renderer)
     );
     if (!mRenderer.renderer)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
         SDL_DestroyWindow(mWindow);
         SDL_Quit();
         // TODO throw exception
@@ -43,7 +43,7 @@ SDLGpuWindow::SDLGpuWindow(SDLGpuRenderer &renderer) : mRenderer(renderer)
     // Set virtual size of the renderer and getWindow
     if (int scale = SDL_RenderSetLogicalSize(mRenderer.renderer, 800, 600); scale < 0)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
         SDL_DestroyWindow(mWindow);
         SDL_Quit();
         // TODO throw exception
@@ -77,7 +77,7 @@ Window &SDLGpuWindow::setResolution(int width, int height)
 {
     if (int result = SDL_RenderSetLogicalSize(mRenderer.renderer, width, height); result < 0)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
         // TODO throw exception
     }
     return *this;
@@ -96,7 +96,7 @@ Window &SDLGpuWindow::setScreenMode(ScreenMode screenMode)
     }
     if (int result = SDL_SetWindowFullscreen(mWindow, tmpScreenMode); result < 0)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
         // TODO throw exception
     }
     return *this;
@@ -130,7 +130,7 @@ Window &SDLGpuWindow::setCursorState(CursorState cursorState)
     }
     if (int result = SDL_ShowCursor(tmpCursorState); result < 0)
     {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
         // TODO throw exception
     }
     return *this;
