@@ -5,19 +5,19 @@
 #include "settings/Settings.h"
 #include "core/MainLoop.h"
 
-namespace zkl {
+namespace fragmuapte {
 
 class App
 {
 public:
-    zkl::App &loadSettings();
+    App &loadSettings();
     void start();
 private:
-    zkl::Settings mSettings;
-    zkl::MainLoop mMainLoop;
+    Settings mSettings;
+    MainLoop mMainLoop;
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_APP_H

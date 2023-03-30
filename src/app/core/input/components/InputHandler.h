@@ -2,7 +2,7 @@
 #define FRAGMUAPTE_INPUTHANDLER_H
 
 
-namespace zkl {
+namespace fragmuapte {
 
 struct UserInput
 {
@@ -37,9 +37,9 @@ public:
     [[nodiscard]] UserInput const &getUserInput() const { return mUserInput; }
     virtual ~InputHandler() = default;
 protected:
-    zkl::UserInput mUserInput;
+    UserInput mUserInput;
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 #endif //FRAGMUAPTE_INPUTHANDLER_H

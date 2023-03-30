@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace zkl {
+namespace fragmuapte {
 
 enum class ScreenMode
 {
@@ -35,7 +35,7 @@ public:
     virtual ~Window() = default;
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_WINDOW_H

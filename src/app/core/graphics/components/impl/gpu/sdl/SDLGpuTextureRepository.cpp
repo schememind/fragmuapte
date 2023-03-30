@@ -8,11 +8,13 @@
 
 #include "SDLGpuTextureRepository.h"
 
-zkl::SDLGpuTextureRepository::SDLGpuTextureRepository(zkl::SDLGpuRenderer const &renderer)
+namespace fragmuapte {
+
+SDLGpuTextureRepository::SDLGpuTextureRepository(SDLGpuRenderer const &renderer)
         : mRenderer(renderer)
 {}
 
-zkl::SDLGpuTextureRepository::~SDLGpuTextureRepository()
+SDLGpuTextureRepository::~SDLGpuTextureRepository()
 {
     std::ranges::for_each(mTextures, [](SDL_Texture *texture) {
         SDL_DestroyTexture(texture);
@@ -21,7 +23,7 @@ zkl::SDLGpuTextureRepository::~SDLGpuTextureRepository()
     });
 }
 
-int zkl::SDLGpuTextureRepository::addTextureFromFile(std::string const &path)
+int SDLGpuTextureRepository::addTextureFromFile(std::string const &path)
 {
     if (auto iterator = std::ranges::find(mTextures, nullptr); iterator != mTextures.end())
     {
@@ -39,7 +41,7 @@ int zkl::SDLGpuTextureRepository::addTextureFromFile(std::string const &path)
     return 0;
 }
 
-void zkl::SDLGpuTextureRepository::removeTextureById(int textureId)
+void SDLGpuTextureRepository::removeTextureById(int textureId)
 {
     if (textureId >= 0 && textureId < mTextures.size())
     {
@@ -49,11 +51,11 @@ void zkl::SDLGpuTextureRepository::removeTextureById(int textureId)
     }
 }
 
-void zkl::SDLGpuTextureRepository::submitTextureToRenderer(int textureId,
-                                                           int srcX, int srcY, int srcW, int srcH,
-                                                           int dstX, int dstY, int dstW, int dstH,
-                                                           int pivotX, int pivotY, float angle,
-                                                           bool isFlipHorizontal, bool isFlipVertical)
+void SDLGpuTextureRepository::submitTextureToRenderer(int textureId,
+                                                      int srcX, int srcY, int srcW, int srcH,
+                                                      int dstX, int dstY, int dstW, int dstH,
+                                                      int pivotX, int pivotY, float angle,
+                                                      bool isFlipHorizontal, bool isFlipVertical)
 {
     if (textureId < 0 || textureId > mTextures.size() || mTextures.at(textureId) == nullptr) return;
     SDL_Rect sourceRect { .x = srcX, .y = srcY, .w = srcW, .h = srcH };
@@ -65,3 +67,5 @@ void zkl::SDLGpuTextureRepository::submitTextureToRenderer(int textureId,
     SDL_RenderCopyEx(mRenderer.renderer, mTextures.at(textureId),
                      &sourceRect, &destinationRect, angle, &pivotPoint, flip);
 }
+
+}  // namespace fragmuapte

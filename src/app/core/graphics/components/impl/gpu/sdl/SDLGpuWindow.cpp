@@ -1,6 +1,8 @@
 #include "SDLGpuWindow.h"
 
-zkl::SDLGpuWindow::SDLGpuWindow(zkl::SDLGpuRenderer &renderer) : mRenderer(renderer)
+namespace fragmuapte {
+
+SDLGpuWindow::SDLGpuWindow(SDLGpuRenderer &renderer) : mRenderer(renderer)
 {
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
@@ -48,30 +50,30 @@ zkl::SDLGpuWindow::SDLGpuWindow(zkl::SDLGpuRenderer &renderer) : mRenderer(rende
     }
 }
 
-void zkl::SDLGpuWindow::clear()
+void SDLGpuWindow::clear()
 {
     SDL_SetRenderDrawColor(mRenderer.renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(mRenderer.renderer);
 }
 
-void zkl::SDLGpuWindow::render()
+void SDLGpuWindow::render()
 {
     SDL_RenderPresent(mRenderer.renderer);
 }
 
-zkl::Window &zkl::SDLGpuWindow::setTitle(std::string const &title)
+Window &SDLGpuWindow::setTitle(std::string const &title)
 {
     SDL_SetWindowTitle(mWindow, title.c_str());
     return *this;
 }
 
-zkl::Window &zkl::SDLGpuWindow::setSize(int width, int height)
+Window &SDLGpuWindow::setSize(int width, int height)
 {
     SDL_SetWindowSize(mWindow, width, height);
     return *this;
 }
 
-zkl::Window &zkl::SDLGpuWindow::setResolution(int width, int height)
+Window &SDLGpuWindow::setResolution(int width, int height)
 {
     if (int result = SDL_RenderSetLogicalSize(mRenderer.renderer, width, height); result < 0)
     {
@@ -81,14 +83,14 @@ zkl::Window &zkl::SDLGpuWindow::setResolution(int width, int height)
     return *this;
 }
 
-zkl::Window &zkl::SDLGpuWindow::setScreenMode(zkl::ScreenMode screenMode)
+Window &SDLGpuWindow::setScreenMode(ScreenMode screenMode)
 {
     int tmpScreenMode = 0;
-    if (screenMode == zkl::ScreenMode::fullScreen)
+    if (screenMode == ScreenMode::fullScreen)
     {
         tmpScreenMode = SDL_WINDOW_FULLSCREEN;
     }
-    else if (screenMode == zkl::ScreenMode::windowed)
+    else if (screenMode == ScreenMode::windowed)
     {
         tmpScreenMode = 0;
     }
@@ -100,14 +102,14 @@ zkl::Window &zkl::SDLGpuWindow::setScreenMode(zkl::ScreenMode screenMode)
     return *this;
 }
 
-zkl::Window &zkl::SDLGpuWindow::setRenderScaleQuality(zkl::RenderScaleQuality renderScaleQuality)
+Window &SDLGpuWindow::setRenderScaleQuality(RenderScaleQuality renderScaleQuality)
 {
     std::string tmpRenderScaleQuality = "0";
-    if (renderScaleQuality == zkl::RenderScaleQuality::pixelated)
+    if (renderScaleQuality == RenderScaleQuality::pixelated)
     {
         tmpRenderScaleQuality = "0";
     }
-    else if (renderScaleQuality == zkl::RenderScaleQuality::linear)
+    else if (renderScaleQuality == RenderScaleQuality::linear)
     {
         tmpRenderScaleQuality = "1";
     }
@@ -115,14 +117,14 @@ zkl::Window &zkl::SDLGpuWindow::setRenderScaleQuality(zkl::RenderScaleQuality re
     return *this;
 }
 
-zkl::Window &zkl::SDLGpuWindow::setCursorState(zkl::CursorState cursorState)
+Window &SDLGpuWindow::setCursorState(CursorState cursorState)
 {
     int tmpCursorState = 0;
-    if (cursorState == zkl::CursorState::visible)
+    if (cursorState == CursorState::visible)
     {
         tmpCursorState = 1;
     }
-    else if (cursorState == zkl::CursorState::invisible)
+    else if (cursorState == CursorState::invisible)
     {
         tmpCursorState = 0;
     }
@@ -134,8 +136,10 @@ zkl::Window &zkl::SDLGpuWindow::setCursorState(zkl::CursorState cursorState)
     return *this;
 }
 
-zkl::SDLGpuWindow::~SDLGpuWindow()
+SDLGpuWindow::~SDLGpuWindow()
 {
     SDL_DestroyWindow(mWindow);
     SDL_DestroyRenderer(mRenderer.renderer);
 }
+
+}  // namespace fragmuapte

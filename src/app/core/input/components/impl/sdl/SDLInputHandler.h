@@ -10,9 +10,9 @@
 
 #include "../../InputHandler.h"
 
-namespace zkl {
+namespace fragmuapte {
 
-class SDLInputHandler final : public zkl::InputHandler
+class SDLInputHandler final : public InputHandler
 {
 public:
     SDLInputHandler();
@@ -21,7 +21,7 @@ private:
     SDL_Event mEvent = {};
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_SDLINPUTHANDLER_H

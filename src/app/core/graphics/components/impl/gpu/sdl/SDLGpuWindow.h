@@ -11,12 +11,12 @@
 #include "SDLGpuRenderer.h"
 #include "../../../Window.h"
 
-namespace zkl {
+namespace fragmuapte {
 
-class SDLGpuWindow final : public zkl::Window
+class SDLGpuWindow final : public Window
 {
 public:
-    explicit SDLGpuWindow(zkl::SDLGpuRenderer &renderer);
+    explicit SDLGpuWindow(SDLGpuRenderer &renderer);
     void clear() override;
     void render() override;
     Window &setTitle(std::string const &title) override;
@@ -28,10 +28,10 @@ public:
     ~SDLGpuWindow() override;
 private:
     SDL_Window *mWindow{};
-    zkl::SDLGpuRenderer &mRenderer;
+    SDLGpuRenderer &mRenderer;
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_SDLGPUWINDOW_H

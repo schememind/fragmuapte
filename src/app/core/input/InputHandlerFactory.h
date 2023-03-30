@@ -5,12 +5,12 @@
 #include <memory>
 #include "components/InputHandler.h"
 
-namespace zkl::factory {
+namespace fragmuapte::factory {
 
 // FIXME replace string parameter with enum
-std::unique_ptr<zkl::InputHandler> createInputHandler(std::string_view inputHandlerType);
+std::unique_ptr<InputHandler> createInputHandler(std::string_view inputHandlerType);
 
-} // zkl
+}  // namespace fragmuapte::factory
 
 
 #endif //FRAGMUAPTE_INPUTHANDLERFACTORY_H

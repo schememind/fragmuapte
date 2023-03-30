@@ -5,16 +5,16 @@
 #include "Window.h"
 #include "TextureRepository.h"
 
-namespace zkl {
+namespace fragmuapte {
 
 struct GraphicsLayer
 {
-    [[nodiscard]] virtual zkl::Window &getWindow() = 0;
-    [[nodiscard]] virtual zkl::TextureRepository &getTextures() = 0;
+    [[nodiscard]] virtual Window &getWindow() = 0;
+    [[nodiscard]] virtual TextureRepository &getTextures() = 0;
     virtual ~GraphicsLayer() = default;
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_GRAPHICSLAYER_H

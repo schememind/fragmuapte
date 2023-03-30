@@ -1,6 +1,10 @@
 #include "Settings.h"
 
-void zkl::Settings::loadFromUserConfig()
+namespace fragmuapte {
+
+void Settings::loadFromUserConfig()
 {
     // TODO fill member values from OS-specific user config file
 }
+
+}  // namespace fragmuapte

@@ -2,7 +2,7 @@
 
 int main(int argv, char** args)
 {
-    zkl::App{}
+    fragmuapte::App{}
         .loadSettings()
         .start();
     return 0;

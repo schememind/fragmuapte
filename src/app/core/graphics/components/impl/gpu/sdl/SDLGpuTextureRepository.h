@@ -13,12 +13,12 @@
 #include "SDLGpuRenderer.h"
 #include "../../../TextureRepository.h"
 
-namespace zkl {
+namespace fragmuapte {
 
-class SDLGpuTextureRepository final : public zkl::TextureRepository
+class SDLGpuTextureRepository final : public TextureRepository
 {
 public:
-    explicit SDLGpuTextureRepository(zkl::SDLGpuRenderer const &renderer);
+    explicit SDLGpuTextureRepository(SDLGpuRenderer const &renderer);
     ~SDLGpuTextureRepository() override;
 
     int addTextureFromFile(std::string const &path) override;
@@ -31,11 +31,11 @@ public:
 private:
     static std::size_t const MAX_TEXTURES = 5;
 
-    zkl::SDLGpuRenderer const &mRenderer;
+    SDLGpuRenderer const &mRenderer;
     std::array<SDL_Texture*, MAX_TEXTURES> mTextures{};
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_SDLGPUTEXTUREREPOSITORY_H

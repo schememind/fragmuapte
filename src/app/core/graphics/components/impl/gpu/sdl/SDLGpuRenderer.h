@@ -8,7 +8,7 @@
     #include "SDL2/SDL.h"
 #endif
 
-namespace zkl {
+namespace fragmuapte {
 
 /**
  * Common data accessible by SDLGpuWindow and SDLGpuTextureRepository
@@ -21,7 +21,7 @@ private:
     friend class SDLGpuTextureRepository;
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_SDLGPURENDERER_H

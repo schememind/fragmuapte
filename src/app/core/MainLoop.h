@@ -7,25 +7,25 @@
 #include "time/components/Timer.h"
 #include "input/components/InputHandler.h"
 
-namespace zkl {
+namespace fragmuapte {
 
 class MainLoop
 {
 public:
-    MainLoop &setGraphicsLayer(std::unique_ptr<zkl::GraphicsLayer> graphicsLayer);
-    MainLoop &setInputHandler(std::unique_ptr<zkl::InputHandler> inputHandler);
-    MainLoop &setTimer(std::unique_ptr<zkl::Timer> timer);
+    MainLoop &setGraphicsLayer(std::unique_ptr<GraphicsLayer> graphicsLayer);
+    MainLoop &setInputHandler(std::unique_ptr<InputHandler> inputHandler);
+    MainLoop &setTimer(std::unique_ptr<Timer> timer);
     [[nodiscard]] bool isRunning() const;
     void start();
     void nextStep();    // FIXME return meaningful signal
 private:
-    std::unique_ptr<zkl::GraphicsLayer> mGraphicsLayer;
-    std::unique_ptr<zkl::InputHandler> mInputHandler;
-    std::unique_ptr<zkl::Timer> mTimer;
+    std::unique_ptr<GraphicsLayer> mGraphicsLayer;
+    std::unique_ptr<InputHandler> mInputHandler;
+    std::unique_ptr<Timer> mTimer;
     bool mIsRunning{false};
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_MAINLOOP_H

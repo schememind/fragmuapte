@@ -2,7 +2,7 @@
 #define FRAGMUAPTE_TIMER_H
 
 
-namespace zkl {
+namespace fragmuapte {
 
 class Timer
 {
@@ -14,7 +14,7 @@ protected:
     double mDelta{0.0};
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_TIMER_H

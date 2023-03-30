@@ -10,9 +10,9 @@
 
 #include "../../Timer.h"
 
-namespace zkl {
+namespace fragmuapte {
 
-class SDLTimer final : public zkl::Timer
+class SDLTimer final : public Timer
 {
 public:
     SDLTimer();
@@ -22,7 +22,7 @@ private:
     Uint32 mCurrTime = 0;
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_SDLTIMER_H

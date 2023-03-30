@@ -1,6 +1,8 @@
 #include "SDLInputHandler.h"
 
-zkl::SDLInputHandler::SDLInputHandler()
+namespace fragmuapte {
+
+SDLInputHandler::SDLInputHandler()
 {
     if (int result = SDL_Init(SDL_INIT_EVENTS); result < 0)
     {
@@ -9,7 +11,7 @@ zkl::SDLInputHandler::SDLInputHandler()
     }
 }
 
-void zkl::SDLInputHandler::registerUserInput()
+void SDLInputHandler::registerUserInput()
 {
     mUserInput.reset();
     while (SDL_PollEvent(&mEvent))
@@ -62,3 +64,5 @@ void zkl::SDLInputHandler::registerUserInput()
         }
     }
 }
+
+}  // namespace fragmuapte

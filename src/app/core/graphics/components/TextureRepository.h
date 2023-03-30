@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace zkl {
+namespace fragmuapte {
 
 class TextureRepository
 {
@@ -19,7 +19,7 @@ public:
     virtual ~TextureRepository() = default;
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_TEXTUREREPOSITORY_H

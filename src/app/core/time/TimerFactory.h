@@ -5,12 +5,12 @@
 #include <memory>
 #include "components/Timer.h"
 
-namespace zkl::factory {
+namespace fragmuapte::factory {
 
 // FIXME replace string parameter with enum
-std::unique_ptr<zkl::Timer> createTimer(std::string_view timerType);
+std::unique_ptr<Timer> createTimer(std::string_view timerType);
 
-} // zkl
+}  // namespace fragmuapte::factory
 
 
 #endif //FRAGMUAPTE_TIMERFACTORY_H

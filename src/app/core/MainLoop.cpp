@@ -1,29 +1,31 @@
 #include "MainLoop.h"
 
-zkl::MainLoop &zkl::MainLoop::setGraphicsLayer(std::unique_ptr<zkl::GraphicsLayer> graphicsLayer)
+namespace fragmuapte {
+
+MainLoop &MainLoop::setGraphicsLayer(std::unique_ptr<GraphicsLayer> graphicsLayer)
 {
     mGraphicsLayer = std::move(graphicsLayer);
     return *this;
 }
 
-zkl::MainLoop &zkl::MainLoop::setInputHandler(std::unique_ptr<zkl::InputHandler> inputHandler)
+MainLoop &MainLoop::setInputHandler(std::unique_ptr<InputHandler> inputHandler)
 {
     mInputHandler = std::move(inputHandler);
     return *this;
 }
 
-zkl::MainLoop &zkl::MainLoop::setTimer(std::unique_ptr<zkl::Timer> timer)
+MainLoop &MainLoop::setTimer(std::unique_ptr<Timer> timer)
 {
     mTimer = std::move(timer);
     return *this;
 }
 
-bool zkl::MainLoop::isRunning() const
+bool MainLoop::isRunning() const
 {
     return mIsRunning;
 }
 
-void zkl::MainLoop::start()
+void MainLoop::start()
 {
     if (mGraphicsLayer == nullptr)
     {
@@ -41,7 +43,7 @@ void zkl::MainLoop::start()
     mIsRunning = true;
 }
 
-void zkl::MainLoop::nextStep()
+void MainLoop::nextStep()
 {
     mTimer->refresh();
     mInputHandler->registerUserInput();
@@ -50,3 +52,5 @@ void zkl::MainLoop::nextStep()
     // TODO submit getTextures for rendering mGraphicsLayer->getTextures().submitTextureToRenderer(...)
     mGraphicsLayer->getWindow().render();
 }
+
+}  // namespace fragmuapte

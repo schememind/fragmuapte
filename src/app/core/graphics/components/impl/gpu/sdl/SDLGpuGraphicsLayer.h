@@ -7,20 +7,20 @@
 #include "SDLGpuWindow.h"
 #include "SDLGpuTextureRepository.h"
 
-namespace zkl {
+namespace fragmuapte {
 
-class SDLGpuGraphicsLayer final : public zkl::GraphicsLayer
+class SDLGpuGraphicsLayer final : public GraphicsLayer
 {
 public:
-    zkl::Window &getWindow() override { return mWindow; }
-    zkl::TextureRepository &getTextures() override { return mTextureRepository; }
+    Window &getWindow() override { return mWindow; }
+    TextureRepository &getTextures() override { return mTextureRepository; }
 private:
-    zkl::SDLGpuRenderer mRenderer;
-    zkl::SDLGpuWindow mWindow{mRenderer};
-    zkl::SDLGpuTextureRepository mTextureRepository{mRenderer};
+    SDLGpuRenderer mRenderer;
+    SDLGpuWindow mWindow{mRenderer};
+    SDLGpuTextureRepository mTextureRepository{mRenderer};
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_SDLGPUGRAPHICSLAYER_H

@@ -5,12 +5,12 @@
 #include <memory>
 #include "components/GraphicsLayer.h"
 
-namespace zkl::factory {
+namespace fragmuapte::factory {
 
 // FIXME replace string parameter with enum
-std::unique_ptr<zkl::GraphicsLayer> createGraphicsLayer(std::string_view graphicsLayerType);
+std::unique_ptr<GraphicsLayer> createGraphicsLayer(std::string_view graphicsLayerType);
 
-}  // zkl::factory
+}  // namespace fragmuapte::factory
 
 
 #endif //FRAGMUAPTE_GRAPHICSLAYERFACTORY_H

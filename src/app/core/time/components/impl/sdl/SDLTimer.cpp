@@ -1,6 +1,8 @@
 #include "SDLTimer.h"
 
-zkl::SDLTimer::SDLTimer()
+namespace fragmuapte {
+
+SDLTimer::SDLTimer()
 {
     if (int result = SDL_Init(SDL_INIT_TIMER); result < 0)
     {
@@ -9,10 +11,12 @@ zkl::SDLTimer::SDLTimer()
     }
 }
 
-void zkl::SDLTimer::refresh()
+void SDLTimer::refresh()
 {
     mPrevTime = mCurrTime;
     // TODO investigate SDL_GetPerformanceCounter and SDL_GetPerformanceFrequency
     mCurrTime = SDL_GetTicks();
     mDelta = (mCurrTime - mPrevTime) / 1000.0;
 }
+
+}  // namespace fragmuapte

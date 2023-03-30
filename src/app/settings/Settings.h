@@ -4,7 +4,7 @@
 
 #include <string_view>
 
-namespace zkl {
+namespace fragmuapte {
 
 struct Settings
 {
@@ -21,7 +21,7 @@ struct Settings
     bool isFullScreen = false;
 };
 
-} // zkl
+}  // namespace fragmuapte
 
 
 #endif //FRAGMUAPTE_SETTINGS_H
