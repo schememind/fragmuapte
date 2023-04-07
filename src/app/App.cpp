@@ -5,7 +5,7 @@
 
 namespace fragmuapte {
 
-App &App::loadSettings()
+App& App::loadSettings()
 {
     mSettings.loadFromUserConfig();
     return *this;

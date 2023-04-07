@@ -61,19 +61,19 @@ void SDLGpuWindow::render()
     SDL_RenderPresent(mRenderer.renderer);
 }
 
-Window &SDLGpuWindow::setTitle(std::string const &title)
+Window& SDLGpuWindow::setTitle(std::string const &title)
 {
     SDL_SetWindowTitle(mWindow, title.c_str());
     return *this;
 }
 
-Window &SDLGpuWindow::setSize(int width, int height)
+Window& SDLGpuWindow::setSize(int width, int height)
 {
     SDL_SetWindowSize(mWindow, width, height);
     return *this;
 }
 
-Window &SDLGpuWindow::setResolution(int width, int height)
+Window& SDLGpuWindow::setResolution(int width, int height)
 {
     if (int result = SDL_RenderSetLogicalSize(mRenderer.renderer, width, height); result < 0)
     {
@@ -83,7 +83,7 @@ Window &SDLGpuWindow::setResolution(int width, int height)
     return *this;
 }
 
-Window &SDLGpuWindow::setScreenMode(ScreenMode screenMode)
+Window& SDLGpuWindow::setScreenMode(ScreenMode screenMode)
 {
     int tmpScreenMode = 0;
     if (screenMode == ScreenMode::fullScreen)
@@ -102,7 +102,7 @@ Window &SDLGpuWindow::setScreenMode(ScreenMode screenMode)
     return *this;
 }
 
-Window &SDLGpuWindow::setRenderScaleQuality(RenderScaleQuality renderScaleQuality)
+Window& SDLGpuWindow::setRenderScaleQuality(RenderScaleQuality renderScaleQuality)
 {
     std::string tmpRenderScaleQuality = "0";
     if (renderScaleQuality == RenderScaleQuality::pixelated)
@@ -117,7 +117,7 @@ Window &SDLGpuWindow::setRenderScaleQuality(RenderScaleQuality renderScaleQualit
     return *this;
 }
 
-Window &SDLGpuWindow::setCursorState(CursorState cursorState)
+Window& SDLGpuWindow::setCursorState(CursorState cursorState)
 {
     int tmpCursorState = 0;
     if (cursorState == CursorState::visible)

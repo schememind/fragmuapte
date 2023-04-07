@@ -2,19 +2,19 @@
 
 namespace fragmuapte {
 
-MainLoop &MainLoop::setGraphicsLayer(std::unique_ptr<GraphicsLayer> graphicsLayer)
+MainLoop& MainLoop::setGraphicsLayer(std::unique_ptr<GraphicsLayer> graphicsLayer)
 {
     mGraphicsLayer = std::move(graphicsLayer);
     return *this;
 }
 
-MainLoop &MainLoop::setInputHandler(std::unique_ptr<InputHandler> inputHandler)
+MainLoop& MainLoop::setInputHandler(std::unique_ptr<InputHandler> inputHandler)
 {
     mInputHandler = std::move(inputHandler);
     return *this;
 }
 
-MainLoop &MainLoop::setTimer(std::unique_ptr<Timer> timer)
+MainLoop& MainLoop::setTimer(std::unique_ptr<Timer> timer)
 {
     mTimer = std::move(timer);
     return *this;
