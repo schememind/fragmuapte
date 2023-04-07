@@ -11,27 +11,27 @@ add_executable(fragmuapte
                src/main.cpp
                src/app/core/MainLoop.cpp
                src/app/core/MainLoop.h
-               src/app/core/time/components/Timer.h
-               src/app/core/time/components/impl/sdl/SDLTimer.cpp
-               src/app/core/time/components/impl/sdl/SDLTimer.h
-               src/app/core/input/components/InputHandler.h
-               src/app/core/input/components/impl/sdl/SDLInputHandler.cpp
-               src/app/core/input/components/impl/sdl/SDLInputHandler.h
-               src/app/core/graphics/components/GraphicsLayer.h
-               src/app/core/graphics/components/Window.h
-               src/app/core/graphics/components/TextureRepository.h
-               src/app/core/graphics/components/impl/gpu/sdl/SDLGpuWindow.cpp
-               src/app/core/graphics/components/impl/gpu/sdl/SDLGpuWindow.h
-               src/app/core/graphics/components/impl/gpu/sdl/SDLGpuTextureRepository.cpp
-               src/app/core/graphics/components/impl/gpu/sdl/SDLGpuTextureRepository.h
-               src/app/core/graphics/components/impl/gpu/sdl/SDLGpuRenderer.h
-               src/app/core/graphics/components/impl/gpu/sdl/SDLGpuGraphicsLayer.h
-               src/app/core/time/TimerFactory.cpp
-               src/app/core/time/TimerFactory.h
-               src/app/core/input/InputHandlerFactory.cpp
-               src/app/core/input/InputHandlerFactory.h
-               src/app/core/graphics/GraphicsLayerFactory.cpp
-               src/app/core/graphics/GraphicsLayerFactory.h
+               src/app/core/backend/time/components/Timer.h
+               src/app/core/backend/time/components/impl/sdl/SDLTimer.cpp
+               src/app/core/backend/time/components/impl/sdl/SDLTimer.h
+               src/app/core/backend/input/components/InputHandler.h
+               src/app/core/backend/input/components/impl/sdl/SDLInputHandler.cpp
+               src/app/core/backend/input/components/impl/sdl/SDLInputHandler.h
+               src/app/core/backend/graphics/components/GraphicsLayer.h
+               src/app/core/backend/graphics/components/Window.h
+               src/app/core/backend/graphics/components/TextureRepository.h
+               src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuWindow.cpp
+               src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuWindow.h
+               src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuTextureRepository.cpp
+               src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuTextureRepository.h
+               src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuRenderer.h
+               src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuGraphicsLayer.h
+               src/app/core/backend/time/TimerFactory.cpp
+               src/app/core/backend/time/TimerFactory.h
+               src/app/core/backend/input/InputHandlerFactory.cpp
+               src/app/core/backend/input/InputHandlerFactory.h
+               src/app/core/backend/graphics/GraphicsLayerFactory.cpp
+               src/app/core/backend/graphics/GraphicsLayerFactory.h
                src/app/App.cpp src/app/App.h
                src/app/settings/Settings.cpp
                src/app/settings/Settings.h

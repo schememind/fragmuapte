@@ -1,6 +1,6 @@
-#include "core/graphics/GraphicsLayerFactory.h"
-#include "core/input/InputHandlerFactory.h"
-#include "core/time/TimerFactory.h"
+#include "core/backend/graphics/GraphicsLayerFactory.h"
+#include "core/backend/input/InputHandlerFactory.h"
+#include "core/backend/time/TimerFactory.h"
 #include "App.h"
 
 namespace fragmuapte {

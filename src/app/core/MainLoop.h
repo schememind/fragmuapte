@@ -3,9 +3,9 @@
 
 
 #include <memory>
-#include "graphics/components/GraphicsLayer.h"
-#include "time/components/Timer.h"
-#include "input/components/InputHandler.h"
+#include "backend/graphics/components/GraphicsLayer.h"
+#include "backend/time/components/Timer.h"
+#include "backend/input/components/InputHandler.h"
 
 namespace fragmuapte {
 
