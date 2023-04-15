@@ -48,9 +48,9 @@ void MainLoop::nextStep()
     mTimer->refresh();
     mInputHandler->registerUserInput();
     mIsRunning = !mInputHandler->getUserInput().isExit;    // FIXME temporary solution
-    mGraphicsLayer->getWindow().clear();
-    // TODO submit getTextures for rendering mGraphicsLayer->getTextures().submitTextureToRenderer(...)
-    mGraphicsLayer->getWindow().render();
+    mGraphicsLayer->clear();
+    // TODO submit getTextures for rendering mGraphicsLayer->submitTextureToRenderer(...)
+    mGraphicsLayer->render();
 }
 
 }  // namespace fragmuapte

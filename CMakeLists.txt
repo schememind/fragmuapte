@@ -18,14 +18,8 @@ add_executable(fragmuapte
                src/app/core/backend/input/components/impl/sdl/SDLInputHandler.cpp
                src/app/core/backend/input/components/impl/sdl/SDLInputHandler.h
                src/app/core/backend/graphics/components/GraphicsLayer.h
-               src/app/core/backend/graphics/components/Window.h
-               src/app/core/backend/graphics/components/TextureRepository.h
-               src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuWindow.cpp
-               src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuWindow.h
-               src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuTextureRepository.cpp
-               src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuTextureRepository.h
-               src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuRenderer.h
                src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuGraphicsLayer.h
+               src/app/core/backend/graphics/components/impl/gpu/sdl/SDLGpuGraphicsLayer.cpp
                src/app/core/backend/time/TimerFactory.cpp
                src/app/core/backend/time/TimerFactory.h
                src/app/core/backend/input/InputHandlerFactory.cpp

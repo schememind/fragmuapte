@@ -18,13 +18,12 @@ void App::start()
     auto tmpTimer = factory::createTimer(mSettings.timerType);
 
     tmpGraphicsLayer
-        ->getWindow()
-            .setTitle("Test Window")
-            .setSize(mSettings.windowWidth, mSettings.windowHeight)
-            .setResolution(mSettings.resolutionWidth, mSettings.resolutionHeight)
-            .setRenderScaleQuality(RenderScaleQuality::pixelated)
-            .setScreenMode(mSettings.isFullScreen ? ScreenMode::fullScreen : ScreenMode::windowed)
-            .setCursorState(CursorState::visible);
+        ->setTitle("Test Window")
+        .setSize(mSettings.windowWidth, mSettings.windowHeight)
+        .setResolution(mSettings.resolutionWidth, mSettings.resolutionHeight)
+        .setRenderScaleQuality(RenderScaleQuality::pixelated)
+        .setScreenMode(mSettings.isFullScreen ? ScreenMode::fullScreen : ScreenMode::windowed)
+        .setCursorState(CursorState::visible);
 
     mMainLoop
         .setGraphicsLayer(std::move(tmpGraphicsLayer))
