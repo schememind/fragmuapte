@@ -20,7 +20,7 @@ SDLGpuGraphicsLayer::SDLGpuGraphicsLayer()
         // TODO throw exception
     }
 
-    // Create getWindow
+    // Create window with default properties
     mWindow = SDL_CreateWindow(
             "Default caption",
             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -48,7 +48,7 @@ SDLGpuGraphicsLayer::SDLGpuGraphicsLayer()
         // TODO throw exception
     }
 
-    // Set virtual size of the renderer and getWindow
+    // Set virtual size of the renderer and window
     if (int scale = SDL_RenderSetLogicalSize(mRenderer, 800, 600); scale < 0)
     {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
