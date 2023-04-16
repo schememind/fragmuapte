@@ -31,10 +31,10 @@ public:
     int addTextureFromFile(std::string const &path) override;
     void removeTextureById(int textureId) override;
     void submitTextureToRenderer(int textureId,
-                                         int srcX, int srcY, int srcW, int srcH,
-                                         int dstX, int dstY, int dstW, int dstH,
-                                         int pivotX, int pivotY, float angle,
-                                         bool isFlipHorizontal, bool isFlipVertical) override;
+                                 int srcX, int srcY, int srcW, int srcH,
+                                 int dstX, int dstY, int dstW, int dstH,
+                                 int pivotX, int pivotY, float angle,
+                                 bool isFlipHorizontal, bool isFlipVertical) override;
     
     ~SDLGpuGraphicsLayer() override;
 
