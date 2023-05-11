@@ -1,6 +1,11 @@
-# The following system (not user!) environment variables are required when building on Windows:
-# - SDL2_INCLUDE_PATH - path to a folder containing all SDL2 header files
-# - SDL2_LIB_PATH - path to a folder containing all SDL2 library files
+# In order to build on Windows, the following CMake variables must be set by the user when running cmake command:
+# - SDL2_INCLUDE_PATH - path to a folder containing SDL2 core header files (*.h)
+# - SDL2_LIB_PATH - path to a folder containing SDL2 core library files (*.lib)
+# - SDL2_IMAGE_INCLUDE_PATH - path to a folder containing SDL2_image header files (*.h)
+# - SDL2_IMAGE_LIB_PATH - path to a folder containing SDL2_image library files (*.lib)
+# (Example: cmake -DSDL2_INCLUDE_PATH=C:\libs\SDL2_VC\include -DSDL2_LIB_PATH==C:\libs\SDL2_VC\lib\x64 ..)
+
+# In order to run on Windows, all SDL-related *.dll files must be copied to the location of the executable.
 
 cmake_minimum_required(VERSION 3.21)
 project(fragmuapte)
@@ -33,32 +38,45 @@ add_executable(fragmuapte
 
 
 if (WIN32)
-    # Windows: include headers
-    if (DEFINED ENV{SDL2_INCLUDE_PATH})
-        include_directories("$ENV{SDL2_INCLUDE_PATH}")
-    else ()
-        message(FATAL_ERROR "Missing environment variable: SDL2_INCLUDE_PATH! Please create this environment variable and set its value as path to a folder containing all SDL2 header files.")
-    endif ()
+    set(SDL2_INCLUDE_PATH "" CACHE PATH "Directory containing SDL2 and SDL2main headers")
+    set(SDL2_LIB_PATH "" CACHE PATH "Directory containing SDL2 and SDL2main library files")
+    set(SDL2_IMAGE_INCLUDE_PATH "" CACHE PATH "Directory containing SDL_image headers")
+    set(SDL2_IMAGE_LIB_PATH "" CACHE PATH "Directory containing SDL2_image library file")
 
-    # Windows: find libraries
-    if (DEFINED ENV{SDL2_LIB_PATH})
-        find_library(SDL2_MAIN_LIB NAMES SDL2main.lib PATHS ENV SDL2_LIB_PATH)
+    if (NOT "${SDL2_INCLUDE_PATH}" STREQUAL "")
+        include_directories(${SDL2_INCLUDE_PATH})
+    else()
+        message(FATAL_ERROR "Value of CMake variable SDL2_INCLUDE_PATH not specified!")
+    endif()
+
+    if (NOT "${SDL2_LIB_PATH}" STREQUAL "")
+        find_library(SDL2_MAIN_LIB NAMES SDL2main.lib PATHS ${SDL2_LIB_PATH})
         if (NOT SDL2_MAIN_LIB)
             message(FATAL_ERROR "Library SDL2main not found!")
         endif ()
 
-        find_library(SDL2_LIB NAMES SDL2.lib PATHS ENV SDL2_LIB_PATH)
+        find_library(SDL2_LIB NAMES SDL2.lib PATHS ${SDL2_LIB_PATH})
         if (NOT SDL2_LIB)
             message(FATAL_ERROR "Library SDL2 not found!")
         endif ()
+    else()
+        message(FATAL_ERROR "Value of CMake variable SDL2_LIB_PATH not specified!")
+    endif()
 
-        find_library(SDL2_IMAGE_LIB NAMES SDL2_image.lib PATHS ENV SDL2_LIB_PATH)
+    if (NOT "${SDL2_IMAGE_INCLUDE_PATH}" STREQUAL "")
+        include_directories(${SDL2_IMAGE_INCLUDE_PATH})
+    else()
+        message(FATAL_ERROR "Value of CMake variable SDL2_IMAGE_INCLUDE_PATH not specified!")
+    endif()
+
+    if (NOT "${SDL2_IMAGE_LIB_PATH}" STREQUAL "")
+        find_library(SDL2_IMAGE_LIB NAMES SDL2_image.lib PATHS ${SDL2_LIB_PATH})
         if (NOT SDL2_IMAGE_LIB)
             message(FATAL_ERROR "Library SDL2_image not found!")
         endif ()
-    else ()
-        message(FATAL_ERROR "Missing environment variable: SDL2_LIB_PATH! Please create this environment variable and set its value as path to a folder containing all SDL2 library files.")
-    endif ()
+    else()
+        message(FATAL_ERROR "Value of CMake variable SDL2_IMAGE_LIB_PATH not specified!")
+    endif()
 
     target_link_libraries(fragmuapte ${SDL2_MAIN_LIB} ${SDL2_LIB} ${SDL2_IMAGE_LIB})
 else ()
