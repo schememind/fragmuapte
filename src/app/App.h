@@ -3,7 +3,6 @@
 
 
 #include "settings/Settings.h"
-#include "core/MainLoop.h"
 
 namespace fragmuapte {
 
@@ -11,10 +10,9 @@ class App
 {
 public:
     App &loadSettings();
-    void start();
+    void start() const;
 private:
     Settings mSettings;
-    MainLoop mMainLoop;
 };
 
 }  // namespace fragmuapte

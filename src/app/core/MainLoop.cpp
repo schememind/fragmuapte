@@ -2,23 +2,8 @@
 
 namespace fragmuapte {
 
-MainLoop& MainLoop::setGraphicsLayer(std::unique_ptr<GraphicsLayer> graphicsLayer)
-{
-    mGraphicsLayer = std::move(graphicsLayer);
-    return *this;
-}
-
-MainLoop& MainLoop::setInputHandler(std::unique_ptr<InputHandler> inputHandler)
-{
-    mInputHandler = std::move(inputHandler);
-    return *this;
-}
-
-MainLoop& MainLoop::setTimer(std::unique_ptr<Timer> timer)
-{
-    mTimer = std::move(timer);
-    return *this;
-}
+MainLoop::MainLoop(MediaBackend backend) : mMediaBackend{std::move(backend)}
+{}
 
 bool MainLoop::isRunning() const
 {
@@ -27,30 +12,48 @@ bool MainLoop::isRunning() const
 
 void MainLoop::start()
 {
-    if (mGraphicsLayer == nullptr)
-    {
-        // TODO add to exception message
-    }
-    if (mInputHandler == nullptr)
-    {
-        // TODO add to exception message
-    }
-    if (mTimer == nullptr)
-    {
-        // TODO add to exception message
-    }
-    // TODO throw exception if at least one mandatory component is missing
+    mMediaBackend.validate();
+    mContent.load("datafile.dat", &mMediaBackend);
     mIsRunning = true;
 }
 
 void MainLoop::nextStep()
 {
-    mTimer->refresh();
-    mInputHandler->registerUserInput();
-    mIsRunning = !mInputHandler->getUserInput().isExit;    // FIXME temporary solution
-    mGraphicsLayer->clear();
-    // TODO submit getTextures for rendering mGraphicsLayer->submitTextureToRenderer(...)
-    mGraphicsLayer->render();
+    mMediaBackend.timer->refresh();
+    mMediaBackend.inputHandler->registerUserInput();
+    mIsRunning = !mMediaBackend.inputHandler->getUserInput().isExit;    // FIXME temporary solution
+
+    fillContentInput();
+    mContent.update(mMediaBackend.timer->getDelta());
+    mContent.getInput().reset();
+    mContent.prepareRenderingData();
+
+    mMediaBackend.graphicsLayer->clear();
+    for (auto const &aggregatedState : mContent)
+    {
+        mMediaBackend.graphicsLayer->submitTextureToRenderer(
+                aggregatedState.getTextureId(),
+                aggregatedState.getSourceX(), aggregatedState.getSourceY(),
+                aggregatedState.getSourceWidth(), aggregatedState.getSourceHeight(),
+                aggregatedState.getDestinationX(), aggregatedState.getDestinationY(),
+                aggregatedState.getDestinationWidth(), aggregatedState.getDestinationHeight(),
+                aggregatedState.getPivotX(), aggregatedState.getPivotY(), aggregatedState.getAngle(),
+                aggregatedState.getFlipHorizontal(), aggregatedState.getFlipVertical());
+    }
+    mMediaBackend.graphicsLayer->render();
+}
+
+void MainLoop::fillContentInput()
+{
+    mContent.getInput()
+        .setIsUpPressed(mMediaBackend.inputHandler->getUserInput().isUpPressed)
+        .setIsUpReleased(mMediaBackend.inputHandler->getUserInput().isUpReleased)
+        .setIsDownPressed(mMediaBackend.inputHandler->getUserInput().isDownPressed)
+        .setIsDownReleased(mMediaBackend.inputHandler->getUserInput().isDownReleased)
+        .setIsRightPressed(mMediaBackend.inputHandler->getUserInput().isRightPressed)
+        .setIsRightReleased(mMediaBackend.inputHandler->getUserInput().isRightReleased)
+        .setIsLeftPressed(mMediaBackend.inputHandler->getUserInput().isLeftPressed)
+        .setIsLeftReleased(mMediaBackend.inputHandler->getUserInput().isLeftReleased);
 }
 
 }  // namespace fragmuapte

@@ -14,8 +14,14 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(fragmuapte
                src/main.cpp
+               src/app/App.cpp
+               src/app/App.h
+               src/app/settings/Settings.cpp
+               src/app/settings/Settings.h
                src/app/core/MainLoop.cpp
                src/app/core/MainLoop.h
+               src/app/core/MediaBackend.cpp
+               src/app/core/MediaBackend.h
                src/app/core/backend/time/components/Timer.h
                src/app/core/backend/time/components/impl/sdl/SDLTimer.cpp
                src/app/core/backend/time/components/impl/sdl/SDLTimer.h
@@ -31,10 +37,18 @@ add_executable(fragmuapte
                src/app/core/backend/input/InputHandlerFactory.h
                src/app/core/backend/graphics/GraphicsLayerFactory.cpp
                src/app/core/backend/graphics/GraphicsLayerFactory.h
-               src/app/App.cpp src/app/App.h
-               src/app/settings/Settings.cpp
-               src/app/settings/Settings.h
-               )
+               src/app/core/logic/Content.cpp
+               src/app/core/logic/Content.h
+               src/app/core/logic/components/Camera.cpp
+               src/app/core/logic/components/Camera.h
+               src/app/core/logic/components/GameObject.cpp
+               src/app/core/logic/components/GameObject.h
+               src/app/core/logic/components/Animation.cpp
+               src/app/core/logic/components/Animation.h
+               src/app/core/logic/AggregatedState.h
+               src/app/core/logic/ResourceLoader.h
+               src/app/core/logic/Input.h
+               src/app/core/logic/Input.cpp)
 
 
 if (WIN32)
@@ -94,5 +108,5 @@ add_custom_target(copy_resources_dir ALL
 add_dependencies(fragmuapte copy_resources_dir)
 
 if(CMAKE_BUILD_TYPE MATCHES DEBUG)
-    target_compile_options(fragmuapte PRIVATE -Wall -Wextra -Wpedantic)
+    target_compile_options(fragmuapte PRIVATE -Wall -Wextra -Wpedantic -Wuninitialized)
 endif()

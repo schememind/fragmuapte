@@ -1,6 +1,7 @@
 #include "core/backend/graphics/GraphicsLayerFactory.h"
 #include "core/backend/input/InputHandlerFactory.h"
 #include "core/backend/time/TimerFactory.h"
+#include "core/MainLoop.h"
 #include "App.h"
 
 namespace fragmuapte {
@@ -11,7 +12,7 @@ App& App::loadSettings()
     return *this;
 }
 
-void App::start()
+void App::start() const
 {
     auto tmpGraphicsLayer = factory::createGraphicsLayer(mSettings.graphicsLayerType);
     auto tmpInputHandler = factory::createInputHandler(mSettings.inputHandlerType);
@@ -25,15 +26,14 @@ void App::start()
         .setScreenMode(mSettings.isFullScreen ? ScreenMode::fullScreen : ScreenMode::windowed)
         .setCursorState(CursorState::visible);
 
-    mMainLoop
-        .setGraphicsLayer(std::move(tmpGraphicsLayer))
-        .setInputHandler(std::move(tmpInputHandler))
-        .setTimer(std::move(tmpTimer))
-        .start();
+    MainLoop mainLoop({std::move(tmpGraphicsLayer),
+                       std::move(tmpInputHandler),
+                       std::move(tmpTimer)});
+    mainLoop.start();
 
-    while (mMainLoop.isRunning())
+    while (mainLoop.isRunning())
     {
-        mMainLoop.nextStep();
+        mainLoop.nextStep();
     }
 }
 

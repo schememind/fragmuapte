@@ -2,27 +2,23 @@
 #define FRAGMUAPTE_MAINLOOP_H
 
 
-#include <memory>
-#include "backend/graphics/components/GraphicsLayer.h"
-#include "backend/time/components/Timer.h"
-#include "backend/input/components/InputHandler.h"
+#include "MediaBackend.h"
+#include "logic/Content.h"
 
 namespace fragmuapte {
 
 class MainLoop
 {
 public:
-    MainLoop &setGraphicsLayer(std::unique_ptr<GraphicsLayer> graphicsLayer);
-    MainLoop &setInputHandler(std::unique_ptr<InputHandler> inputHandler);
-    MainLoop &setTimer(std::unique_ptr<Timer> timer);
+    explicit MainLoop(MediaBackend backend);
     [[nodiscard]] bool isRunning() const;
     void start();
     void nextStep();    // FIXME return meaningful signal
 private:
-    std::unique_ptr<GraphicsLayer> mGraphicsLayer;
-    std::unique_ptr<InputHandler> mInputHandler;
-    std::unique_ptr<Timer> mTimer;
+    MediaBackend mMediaBackend;
+    logic::Content mContent;
     bool mIsRunning{false};
+    void fillContentInput();
 };
 
 }  // namespace fragmuapte
