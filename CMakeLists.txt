@@ -48,8 +48,10 @@ add_executable(fragmuapte
                src/app/core/logic/AggregatedState.h
                src/app/core/logic/ResourceLoader.h
                src/app/core/logic/Input.h
-               src/app/core/logic/Input.cpp)
-
+               src/app/core/logic/Input.cpp
+               src/app/core/backend/util/FileIdTracker.cpp
+               src/app/core/backend/util/FileIdTracker.h
+)
 
 if (WIN32)
     set(SDL2_INCLUDE_PATH "" CACHE PATH "Directory containing SDL2 and SDL2main headers")

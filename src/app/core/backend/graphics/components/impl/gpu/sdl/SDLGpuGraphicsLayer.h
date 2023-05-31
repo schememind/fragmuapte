@@ -11,6 +11,7 @@
 #endif
 
 #include "../../../GraphicsLayer.h"
+#include "../../../../../util/FileIdTracker.h"
 
 namespace fragmuapte {
 
@@ -44,6 +45,8 @@ private:
 
     static std::size_t const MAX_TEXTURES = 5;
     std::array<SDL_Texture*, MAX_TEXTURES> mTextures{};
+
+    FileIdTracker mFileIdTracker{};
 };
 
 }  // namespace fragmuapte

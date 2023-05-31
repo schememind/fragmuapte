@@ -146,6 +146,10 @@ GraphicsLayer& SDLGpuGraphicsLayer::setCursorState(CursorState cursorState)
 
 int SDLGpuGraphicsLayer::addTextureFromFile(std::string const &path)
 {
+    if (auto existingTextureId = mFileIdTracker.findExistingId(path); existingTextureId.has_value())
+    {
+        return existingTextureId.value();
+    }
     if (auto iterator = std::ranges::find(mTextures, nullptr); iterator != mTextures.end())
     {
         auto id = std::ranges::distance(mTextures.begin(), iterator);
@@ -156,7 +160,9 @@ int SDLGpuGraphicsLayer::addTextureFromFile(std::string const &path)
             // TODO generate default texture
         }
         mTextures.at(id) = texture;
-        return static_cast<int>(id);
+        auto result = static_cast<int>(id);
+        mFileIdTracker.add(path, result);
+        return result;
     }
     // TODO throw exception
     return 0;
@@ -169,6 +175,7 @@ void SDLGpuGraphicsLayer::removeTextureById(int textureId)
         SDL_DestroyTexture(mTextures.at(textureId));
         // TODO log SDL error if something goes wrong with SDL_DestroyTexture
         mTextures.at(textureId) = nullptr;     // FIXME not sure if such approach is correct
+        mFileIdTracker.unassignId(textureId);
     }
 }
 
