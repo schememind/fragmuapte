@@ -8,12 +8,12 @@ namespace fragmuapte::logic {
 
 struct ResourceLoader
 {
-    virtual int loadImage(std::string const &path) = 0;
-    virtual int loadSound(std::string const &path) = 0;
+    [[nodiscard]] virtual int loadImage(std::string const &path) const = 0;
+    [[nodiscard]] virtual int loadSound(std::string const &path) const = 0;
     virtual ~ResourceLoader() = default;
 };
 
-}  // namespace fragmuapte::logic {
+}  // namespace fragmuapte::logic
 
 
 #endif //FRAGMUAPTE_LOGIC_ONELEVEL_RESOURCELOADER_H

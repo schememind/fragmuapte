@@ -14,7 +14,7 @@ struct Camera
     double angle{0.0};
 };
 
-}  // namespace fragmuapte::logic {
+}  // namespace fragmuapte::logic
 
 
 #endif //FRAGMUAPTE_LOGIC_ONELEVEL_CAMERA_H

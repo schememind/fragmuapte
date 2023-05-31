@@ -15,7 +15,7 @@ namespace fragmuapte::logic {
 class Content
 {
 public:
-    void load(std::string_view file, ResourceLoader *resourceLoader);
+    void load(std::string_view file, ResourceLoader const &resourceLoader);
     void update(double deltaTime);
     void prepareRenderingData();
 

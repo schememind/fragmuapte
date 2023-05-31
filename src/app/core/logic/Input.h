@@ -28,7 +28,7 @@ private:
     bool isLeftReleased{false};
 };
 
-}  // namespace fragmuapte::logic {
+}  // namespace fragmuapte::logic
 
 
 #endif //FRAGMUAPTE_INPUT_H

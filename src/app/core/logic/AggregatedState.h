@@ -39,7 +39,7 @@ private:
     bool mIsFlipVertical{false};
 };
 
-}  // namespace fragmuapte::logic {
+}  // namespace fragmuapte::logic
 
 
 #endif //FRAGMUAPTE_LOGIC_ONELEVEL_RENDERDATA_H

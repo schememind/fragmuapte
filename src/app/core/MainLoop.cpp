@@ -13,7 +13,7 @@ bool MainLoop::isRunning() const
 void MainLoop::start()
 {
     mMediaBackend.validate();
-    mContent.load("datafile.dat", &mMediaBackend);
+    mContent.load("datafile.dat", mMediaBackend);
     mIsRunning = true;
 }
 

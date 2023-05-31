@@ -17,8 +17,8 @@ public:
                  std::unique_ptr<InputHandler> pInputHandler,
                  std::unique_ptr<Timer> pTimer);
     void validate() const;
-    int loadImage(std::string const &path) override;
-    int loadSound(std::string const &path) override;
+    [[nodiscard]] int loadImage(std::string const &path) const override;
+    [[nodiscard]] int loadSound(std::string const &path) const override;
     friend class MainLoop;
 private:
     std::unique_ptr<GraphicsLayer> graphicsLayer;

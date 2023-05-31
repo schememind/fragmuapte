@@ -28,12 +28,12 @@ void MediaBackend::validate() const
     // TODO throw exception if at least one mandatory component is missing
 }
 
-int MediaBackend::loadImage(const std::string &path)
+int MediaBackend::loadImage(const std::string &path) const
 {
     return graphicsLayer->addTextureFromFile(path);
 }
 
-int MediaBackend::loadSound(const std::string &path)
+int MediaBackend::loadSound(const std::string &path) const
 {
     // TODO load sound
     return 0;

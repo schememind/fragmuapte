@@ -4,7 +4,7 @@
 
 namespace fragmuapte::logic {
 
-void Content::load(std::string_view file, ResourceLoader *resourceLoader)
+void Content::load(std::string_view file, ResourceLoader const &resourceLoader)
 {
     // TODO load from file
 
@@ -13,7 +13,7 @@ void Content::load(std::string_view file, ResourceLoader *resourceLoader)
     mCamera.width = 800;
     mCamera.height = 600;
 
-    int textureId1 = resourceLoader->loadImage("resources/images/sprite_001.png");
+    int textureId1 = resourceLoader.loadImage("resources/images/sprite_001.png");
     Animation anim1(false);
     anim1.addFrame(textureId1, 0, 0, 60, 100, 0);
 

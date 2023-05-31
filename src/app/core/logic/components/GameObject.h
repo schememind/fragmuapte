@@ -33,7 +33,7 @@ struct GameObject
     std::vector<Animation> animations{};
 };
 
-}  // namespace fragmuapte::logic {
+}  // namespace fragmuapte::logic
 
 
 #endif //FRAGMUAPTE_LOGIC_ONELEVEL_GAMEOBJECT_H
